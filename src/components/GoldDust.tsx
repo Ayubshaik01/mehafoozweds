@@ -58,8 +58,8 @@ export function GoldDust({ density = 26 }: { density?: number }) {
     draw();
     window.addEventListener("resize", resize);
 
-    const io = new IntersectionObserver(([e]) => {
-      running = e.isIntersecting;
+    const io = new IntersectionObserver((entries) => {
+      running = entries[0]?.isIntersecting ?? false;
       if (running) draw();
       else cancelAnimationFrame(raf);
     });

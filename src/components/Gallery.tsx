@@ -9,7 +9,8 @@ const EASE = [0.22, 1, 0.36, 1] as const;
 
 export function Gallery() {
   const [index, setIndex] = useState<number | null>(null);
-  const open = index !== null;
+  const current = index === null ? null : gallery[index];
+  const open = current != null;
 
   const close = useCallback(() => setIndex(null), []);
   const step = useCallback(
@@ -95,9 +96,9 @@ export function Gallery() {
             }}
           >
             <motion.img
-              key={gallery[index].src}
-              src={gallery[index].src}
-              alt={gallery[index].alt}
+              key={current.src}
+              src={current.src}
+              alt={current.alt}
               initial={{ opacity: 0, scale: 0.985 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.7, ease: EASE }}
@@ -130,7 +131,7 @@ export function Gallery() {
               <ChevronRight size={20} strokeWidth={1.2} />
             </button>
             <p className="absolute bottom-6 left-1/2 -translate-x-1/2 label-xs text-ivory/50">
-              {index + 1} / {gallery.length}
+              {(index ?? 0) + 1} / {gallery.length}
             </p>
           </motion.div>
         )}

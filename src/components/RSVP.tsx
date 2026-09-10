@@ -138,8 +138,8 @@ function Field({
   id: string;
   name: string;
   label: string;
-  error?: string;
-  textarea?: boolean;
+  error?: string | undefined;
+  textarea?: boolean | undefined;
 } & React.InputHTMLAttributes<HTMLInputElement>) {
   const shared =
     "peer w-full border-0 border-b border-ivory/25 bg-transparent px-0 pb-3 pt-6 text-ivory placeholder-transparent transition-colors focus:border-gold focus:outline-none";
