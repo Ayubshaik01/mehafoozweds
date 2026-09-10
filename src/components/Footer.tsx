@@ -34,6 +34,22 @@ export function Footer() {
         </h2>
         <p className="mt-8 label-xs text-espresso/55">{wedding.dateLabel}</p>
         <p className="mt-2 label-xs text-espresso/40">{wedding.yearLabel}</p>
+
+        <Divider className="mt-14" />
+
+        <div className="mt-12 space-y-2 text-sm leading-relaxed text-espresso/65">
+          <p className="label-xs text-espresso/45">{wedding.hosts.line}</p>
+          <p className="font-display text-2xl text-burgundy">{wedding.hosts.name}</p>
+          <p className="text-xs uppercase tracking-[0.2em] text-espresso/45">
+            {wedding.hosts.qualification}
+          </p>
+          <p className="mx-auto max-w-md">{wedding.hosts.role}</p>
+          <p>{wedding.hosts.address}</p>
+          <p>Ph: {wedding.hosts.phones.join(" · ")}</p>
+        </div>
+
+        <p className="mt-10 label-xs text-burgundy/80">Note: {wedding.note}</p>
+        <p className="mt-4 text-sm italic text-espresso/55">{wedding.wishesFrom}</p>
       </motion.div>
     </footer>
   );

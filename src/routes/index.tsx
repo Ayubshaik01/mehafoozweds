@@ -14,6 +14,7 @@ import { Gallery } from "@/components/Gallery";
 import { RSVP } from "@/components/RSVP";
 import { Footer } from "@/components/Footer";
 import { MobileActions } from "@/components/MobileActions";
+import { InvitationDownload } from "@/components/InvitationDownload";
 import { wedding } from "@/data/wedding";
 
 export const Route = createFileRoute("/")({
@@ -98,6 +99,7 @@ function Invitation() {
         <Footer />
         <MobileActions />
       </motion.main>
+      <InvitationDownload active={phase === "site"} />
     </>
   );
 }

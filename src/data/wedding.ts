@@ -1,54 +1,78 @@
 /**
  * ============================================================
- *  WEDDING CONFIGURATION — replace every placeholder below
- *  with the real details. Nothing else needs to change.
+ *  WEDDING CONFIGURATION — details taken from the printed
+ *  invitation card (SSA-FINAL).
  * ============================================================
  */
 
 export const wedding = {
-  bride: "BRIDE NAME", // ← replace
-  groom: "GROOM NAME", // ← replace
-  initials: { bride: "B", groom: "G" }, // ← replace (monogram letters)
+  bride: "Syed Sadiya Ahamed",
+  groom: "Shaik Saleem",
+  initials: { bride: "S", groom: "S" },
 
-  /** ISO 8601 with explicit timezone offset — keeps the countdown correct everywhere. */
-  dateISO: "2026-12-05T18:30:00+05:30", // ← replace
-  dateLabel: "SATURDAY, THE FIFTH OF DECEMBER", // ← replace
-  yearLabel: "TWO THOUSAND TWENTY SIX", // ← replace
-  timeLabel: "6:30 IN THE EVENING", // ← replace
+  /** Nikah — ISO 8601 with explicit timezone offset. */
+  dateISO: "2026-09-27T11:30:00+05:30",
+  dateLabel: "SUNDAY, THE TWENTY-SEVENTH OF SEPTEMBER",
+  yearLabel: "TWO THOUSAND TWENTY SIX",
+  timeLabel: "11:30 IN THE MORNING",
 
-  venue: "WEDDING VENUE", // ← replace
-  venueTagline: "A heritage palace of marble, candlelight and quiet grandeur.",
-  address: "VENUE ADDRESS, CITY, STATE", // ← replace
-  city: "CITY", // ← replace
+  venue: "SAI SRINIVASA GARDEN",
+  venueTagline: "Where our families gather to witness the nikah.",
+  address: "Madras Road, Chinna Chowk, Kadapa 516002",
+  city: "KADAPA",
 
-  /** Google Maps link (or any map URL) for the “View location” action. */
-  mapUrl: "https://www.google.com/maps", // ← replace
+  mapUrl:
+    "https://www.google.com/maps/search/?api=1&query=Sai+Srinivasa+Garden+Madras+Road+Chinna+Chowk+Kadapa+516002",
 
   /** Optional ambient track. Drop a file at /public/assets/ambient.mp3 or use a URL. */
   musicUrl: "/assets/ambient.mp3",
 
-  eyebrow: "WITH THE BLESSINGS OF OUR FAMILIES",
-  invitation: "invite you to celebrate their wedding",
+  bismillah: "In the name of Allah, the Most Gracious, the Most Merciful",
+  eyebrow: "WITH IMMENSE JOY AND GRATITUDE TO THE ALMIGHTY",
+  invitation: "invite you to bless and celebrate the wedding of",
+
+  hosts: {
+    line: "Mrs & Mr",
+    name: "Syed Imtiaz Ahamed",
+    qualification: "B.A.",
+    role: "Dy. Asst. Commissioner of State Tax, O/O Asst. Commissioner, Chittoor-2 Circle, Chittoor",
+    address: "D.No 11-785, Habeebullah Street, Kadapa",
+    phones: ["9703003073", "7799226291"],
+    relation: "our youngest daughter",
+  },
+
+  groomDetails: {
+    qualification: "Chartered Accountant · Company Secretary (Prof.)",
+    lineage: "Second son of Shaik Mohiddin (Late)",
+    notes: [
+      "Ex-Member of Urdu Ghar Islamic Committee, Vempalli",
+      "Pro: Madeena-Al-Munwara Sawmill, Vempalli",
+    ],
+  },
+
+  note: "PLEASE AVOID PRESENTATIONS",
+  wishesFrom: "With best wishes: Syed Abdul Mazeed's Family",
 
   story: {
-    kicker: "Two paths. One beautiful beginning.",
+    kicker: "Two families. One blessed beginning.",
     paragraphs: [
-      "It began the way the best things do — quietly, and entirely by accident. A shared table, a conversation that outlasted the evening, and the particular silence of two people realising they were no longer strangers.",
-      "The years that followed were made of ordinary afternoons and extraordinary distances; of letters, of returning, of learning that home is less a place than a person.",
-      "Now, surrounded by the people who shaped us, we begin again — together.",
+      "With immense joy and gratitude to the Almighty, our families come together to celebrate a union written long before we knew it.",
+      "Three days of prayer, feasting and togetherness — Shukrana in Kadapa, the Nikah at Sai Srinivasa Garden, and the Valima at Vempalli.",
+      "We request the honour of your presence and blessings as we embark on this beautiful journey of togetherness.",
     ],
   },
 
   closing: {
-    line: "With love,",
-    blessing: "May the light of this evening stay with you long after the last candle.",
+    line: "With best wishes,",
+    blessing:
+      "May Allah bless this union with love, mercy and lasting happiness.",
   },
 
   /** SEO / social sharing */
   seo: {
-    title: "BRIDE NAME & GROOM NAME — A Celebration of Love",
+    title: "Syed Sadiya Ahamed & Shaik Saleem — Wedding Invitation",
     description:
-      "With the blessings of our families, we invite you to celebrate our wedding. A cinematic invitation to an evening of candlelight, music and beginnings.",
+      "Join us for the Shukrana, Nikah and Valima of Syed Sadiya Ahamed and Shaik Saleem, 26–29 September 2026, Kadapa & Vempalli.",
   },
 } as const;
 
@@ -65,50 +89,29 @@ export type WeddingEvent = {
 
 export const events: WeddingEvent[] = [
   {
-    id: "engagement",
-    name: "Engagement",
-    date: "01 DECEMBER 2026", // ← replace
-    time: "7:00 PM",
-    venue: "THE ORCHID HALL", // ← replace
-    description: "An intimate evening of rings, blessings and the first of many toasts.",
-    dressCode: "Formal · Ivory & Gold",
-  },
-  {
-    id: "mehendi",
-    name: "Mehendi",
-    date: "03 DECEMBER 2026", // ← replace
-    time: "11:00 AM",
-    venue: "PALACE GARDEN COURT", // ← replace
-    description: "Henna, marigolds and afternoon music beneath the tamarind trees.",
-    dressCode: "Daytime Florals",
-  },
-  {
-    id: "sangeet",
-    name: "Sangeet",
-    date: "04 DECEMBER 2026", // ← replace
+    id: "shukrana",
+    name: "Shukrana",
+    date: "SATURDAY, 26 SEPTEMBER 2026",
     time: "8:00 PM",
-    venue: "THE MIRROR BALLROOM", // ← replace
-    description: "A night given entirely to music, choreography and unreasonable joy.",
-    dressCode: "Cocktail · Jewel Tones",
+    venue: "Sai Srinivasa Garden, Madras Road, Chinna Chowk, Kadapa 516002",
+    description: "An evening of thanksgiving as the celebrations begin.",
   },
   {
-    id: "wedding",
-    name: "The Wedding",
-    date: "05 DECEMBER 2026", // ← replace
-    time: "6:30 PM",
-    venue: "WEDDING VENUE", // ← replace
-    description:
-      "Seven vows beneath a canopy of jasmine, as the evening turns to candlelight.",
-    dressCode: "Traditional Ceremonial",
+    id: "nikah",
+    name: "Nikah",
+    date: "SUNDAY, 27 SEPTEMBER 2026",
+    time: "SHARP AT 11:30 AM",
+    venue: "Sai Srinivasa Garden, Madras Road, Chinna Chowk, Kadapa 516002",
+    description: "The solemnisation of the marriage. Lunch follows at 12:30 PM.",
     highlight: true,
   },
   {
-    id: "reception",
-    name: "Reception",
-    date: "06 DECEMBER 2026", // ← replace
-    time: "8:00 PM",
-    venue: "THE GRAND TERRACE", // ← replace
-    description: "Dinner under the open sky, and the first dance of a married life.",
-    dressCode: "Black Tie",
+    id: "valima",
+    name: "Valima",
+    date: "TUESDAY, 29 SEPTEMBER 2026",
+    time: "LUNCH AT 1:00 PM",
+    venue:
+      "Madhu Reddy Convention Hall, Kadapa Circle, Vempalli Bypass Road, Vempalli 516329",
+    description: "The wedding feast hosted by the groom's family.",
   },
 ];
