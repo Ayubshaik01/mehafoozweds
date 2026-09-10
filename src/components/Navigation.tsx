@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { Menu, X } from "lucide-react";
 import { MusicControl } from "./MusicControl";
+import { scrollToSection } from "@/lib/smooth-scroll";
 import { wedding } from "@/data/wedding";
 
 const links = [
@@ -42,7 +43,7 @@ export function Navigation() {
 
   const go = (id: string) => {
     setOpen(false);
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+    scrollToSection(id);
   };
 
   return (

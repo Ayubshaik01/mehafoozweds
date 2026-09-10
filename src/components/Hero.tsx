@@ -3,6 +3,7 @@ import { useRef } from "react";
 import heroImg from "@/assets/hero-architecture.jpg";
 import { Divider, Filigree } from "./Ornament";
 import { GoldDust } from "./GoldDust";
+import { ScrollCue } from "./ScrollCue";
 import { wedding } from "@/data/wedding";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -93,14 +94,7 @@ export function Hero() {
         </motion.div>
       </motion.div>
 
-      <motion.span
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 label-xs text-espresso/45"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: [0, 0.8, 0.4, 0.8] }}
-        transition={{ delay: 2.6, duration: 4, repeat: Infinity, repeatType: "reverse" }}
-      >
-        Scroll
-      </motion.span>
+      <ScrollCue target="dates" />
     </section>
   );
 }

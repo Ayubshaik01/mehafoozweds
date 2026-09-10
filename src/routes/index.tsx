@@ -15,6 +15,9 @@ import { Footer } from "@/components/Footer";
 import { MobileActions } from "@/components/MobileActions";
 import { InvitationDownload } from "@/components/InvitationDownload";
 import { HeartTrail } from "@/components/HeartTrail";
+import { SmoothScroll } from "@/components/SmoothScroll";
+import { ScrollProgress } from "@/components/ScrollProgress";
+import { ParallaxSection } from "@/components/Reveal";
 import { wedding } from "@/data/wedding";
 
 export const Route = createFileRoute("/")({
@@ -81,16 +84,28 @@ function Invitation() {
       >
         <Navigation />
         <Hero />
-        <DateReveal />
-        <Events />
-        <Countdown />
-        <Venue />
-        <RSVP />
+        <ParallaxSection>
+          <DateReveal />
+        </ParallaxSection>
+        <ParallaxSection>
+          <Events />
+        </ParallaxSection>
+        <ParallaxSection>
+          <Countdown />
+        </ParallaxSection>
+        <ParallaxSection>
+          <Venue />
+        </ParallaxSection>
+        <ParallaxSection>
+          <RSVP />
+        </ParallaxSection>
         <Footer />
         <MobileActions />
       </motion.main>
       <InvitationDownload active={phase === "site"} />
       <HeartTrail />
+      <SmoothScroll />
+      <ScrollProgress />
     </>
   );
 }
