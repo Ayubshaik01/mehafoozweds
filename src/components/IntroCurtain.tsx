@@ -78,8 +78,7 @@ export function IntroCurtain({ onDone }: { onDone: () => void }) {
               {wedding.initials.bride}&nbsp;&amp;&nbsp;{wedding.initials.groom}
             </span>
           </motion.div>
-        </div>
-      )}
+      </div>
 
       {/* final brighten into the hero */}
       <motion.div
