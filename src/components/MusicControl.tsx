@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "motion/react";
+import { Volume2, VolumeX } from "lucide-react";
 import { wedding } from "@/data/wedding";
 
 export function MusicControl({ className = "" }: { className?: string }) {
@@ -52,28 +53,23 @@ export function MusicControl({ className = "" }: { className?: string }) {
       onClick={toggle}
       aria-pressed={playing}
       aria-label={playing ? "Mute music" : "Play music"}
-      className={`group inline-flex h-11 w-11 items-center justify-center rounded-full border border-gold/40 bg-ivory/60 backdrop-blur-md transition-colors hover:border-gold ${className}`}
+      className={`group inline-flex h-11 w-11 items-center justify-center rounded-full border border-gold/40 bg-ivory/60 backdrop-blur-md transition-colors hover:border-gold hover:bg-ivory/80 ${className}`}
     >
       <span className="sr-only">{playing ? "Music On" : "Music Muted"}</span>
-      <span className="flex h-4 items-end gap-[3px]" aria-hidden>
-        {[0, 1, 2, 3].map((i) => (
-          <motion.span
-            key={i}
-            className="w-[2px] rounded-full bg-burgundy"
-            animate={
-              playing
-                ? { height: ["30%", "100%", "45%", "80%", "30%"] }
-                : { height: "30%" }
-            }
-            transition={
-              playing
-                ? { duration: 1.8 + i * 0.25, repeat: Infinity, ease: "easeInOut" }
-                : { duration: 0.4 }
-            }
-            style={{ height: "30%" }}
-          />
-        ))}
-      </span>
+      <motion.span
+        key={playing ? "on" : "off"}
+        initial={{ scale: 0.6, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        exit={{ scale: 0.6, opacity: 0 }}
+        transition={{ duration: 0.25 }}
+        aria-hidden
+      >
+        {playing ? (
+          <Volume2 className="h-5 w-5 text-burgundy" />
+        ) : (
+          <VolumeX className="h-5 w-5 text-burgundy/70" />
+        )}
+      </motion.span>
     </button>
   );
 }
