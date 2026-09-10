@@ -50,6 +50,32 @@ export function Footer() {
 
         <p className="mt-10 label-xs text-burgundy/80">Note: {wedding.note}</p>
         <p className="mt-4 text-sm italic text-espresso/55">{wedding.wishesFrom}</p>
+
+        <div className="mt-16 border-t border-gold/25 pt-10">
+          <p className="label-xs text-espresso/40">Designed &amp; developed by</p>
+          <p className="mt-3 font-display text-3xl tracking-[0.08em] text-burgundy">
+            Ayub Shaik
+          </p>
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+            <a
+              href="mailto:ayubshaik.dev@gmail.com"
+              className="inline-flex items-center justify-center rounded-full border border-gold/45 px-7 py-3 label-xs text-burgundy transition-colors hover:bg-burgundy hover:text-ivory"
+            >
+              Contact developer
+            </a>
+            <a
+              href="https://wa.me/919703003073"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center justify-center rounded-full bg-burgundy px-7 py-3 label-xs text-ivory transition-opacity hover:opacity-90"
+            >
+              WhatsApp
+            </a>
+          </div>
+          <p className="mt-8 text-[11px] uppercase tracking-[0.28em] text-espresso/35">
+            © {new Date().getFullYear()} Ayub Shaik · All rights reserved
+          </p>
+        </div>
       </motion.div>
     </footer>
   );
