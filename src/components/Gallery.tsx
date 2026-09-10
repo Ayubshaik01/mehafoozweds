@@ -89,9 +89,9 @@ export function Gallery() {
             role="dialog"
             aria-modal="true"
             aria-label="Gallery viewer"
-            onTouchStart={(e) => (touchX.current = e.touches[0].clientX)}
+            onTouchStart={(e) => (touchX.current = e.touches[0]?.clientX ?? 0)}
             onTouchEnd={(e) => {
-              const dx = e.changedTouches[0].clientX - touchX.current;
+              const dx = (e.changedTouches[0]?.clientX ?? 0) - touchX.current;
               if (Math.abs(dx) > 50) step(dx < 0 ? 1 : -1);
             }}
           >
