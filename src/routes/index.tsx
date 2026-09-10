@@ -1,24 +1,103 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "motion/react";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
+import { Preloader } from "@/components/Preloader";
+import { IntroCurtain } from "@/components/IntroCurtain";
+import { Navigation } from "@/components/Navigation";
+import { Hero } from "@/components/Hero";
+import { Story } from "@/components/Story";
+import { Events } from "@/components/Events";
+import { Countdown } from "@/components/Countdown";
+import { Venue } from "@/components/Venue";
+import { Gallery } from "@/components/Gallery";
+import { RSVP } from "@/components/RSVP";
+import { Footer } from "@/components/Footer";
+import { MobileActions } from "@/components/MobileActions";
+import { wedding } from "@/data/wedding";
+
 export const Route = createFileRoute("/")({
-  component: Index,
+  component: Invitation,
+  head: () => ({
+    meta: [
+      { title: wedding.seo.title },
+      { name: "description", content: wedding.seo.description },
+      { name: "theme-color", content: "#3B0D18" },
+      { property: "og:title", content: wedding.seo.title },
+      { property: "og:description", content: wedding.seo.description },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "/" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: wedding.seo.title },
+      { name: "twitter:description", content: wedding.seo.description },
+    ],
+    links: [{ rel: "canonical", href: "/" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Event",
+          name: wedding.seo.title,
+          startDate: wedding.dateISO,
+          eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+          location: {
+            "@type": "Place",
+            name: wedding.venue,
+            address: wedding.address,
+          },
+          description: wedding.seo.description,
+        }),
+      },
+    ],
+  }),
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
+const SKIP_KEY = "invitation-intro-seen";
+
+function Invitation() {
+  const [phase, setPhase] = useState<"loading" | "intro" | "site">("loading");
+
+  useEffect(() => {
+    const seen = sessionStorage.getItem(SKIP_KEY) === "true";
+    const t = window.setTimeout(() => setPhase(seen ? "site" : "intro"), 1400);
+    return () => window.clearTimeout(t);
+  }, []);
+
+  useEffect(() => {
+    document.body.style.overflow = phase === "site" ? "" : "hidden";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [phase]);
+
+  const enter = () => {
+    sessionStorage.setItem(SKIP_KEY, "true");
+    setPhase("site");
+  };
+
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+    <>
+      <AnimatePresence>{phase === "loading" && <Preloader key="pre" />}</AnimatePresence>
+      {phase === "intro" && <IntroCurtain onDone={enter} />}
+
+      <motion.main
+        initial={{ opacity: 0 }}
+        animate={{ opacity: phase === "site" ? 1 : 0 }}
+        transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
+        aria-hidden={phase !== "site"}
+      >
+        <Navigation />
+        <Hero />
+        <Story />
+        <Events />
+        <Countdown />
+        <Gallery />
+        <Venue />
+        <RSVP />
+        <Footer />
+        <MobileActions />
+      </motion.main>
+    </>
   );
 }
