@@ -3,7 +3,7 @@ import { motion, useScroll, useSpring, useTransform } from "motion/react";
 import { events } from "@/data/wedding";
 import { Divider } from "./Ornament";
 import { GoldDust } from "./GoldDust";
-import { Reveal } from "./Story";
+import { Reveal } from "./Reveal";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 

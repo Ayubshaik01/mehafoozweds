@@ -6,10 +6,8 @@ import { wedding } from "@/data/wedding";
 
 const links = [
   { id: "hero", label: "Home" },
-  { id: "story", label: "Our Story" },
   { id: "events", label: "Events" },
-  { id: "gallery", label: "Gallery" },
-  { id: "venue", label: "Venue" },
+  { id: "venue", label: "Venues" },
   { id: "rsvp", label: "RSVP" },
 ];
 

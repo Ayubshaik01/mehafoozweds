@@ -2,7 +2,7 @@ import { AnimatePresence, motion } from "motion/react";
 import { useCountdown } from "@/hooks/useCountdown";
 import { wedding } from "@/data/wedding";
 import { Divider } from "./Ornament";
-import { Reveal } from "./Story";
+import { Reveal } from "./Reveal";
 
 const pad = (n: number) => String(n).padStart(2, "0");
 
