@@ -52,8 +52,7 @@ export function IntroCurtain({ onDone }: { onDone: () => void }) {
       aria-label="Opening sequence"
     >
       {/* Velvet curtain scene */}
-      {
-        <div className="absolute inset-0">
+      <div className="absolute inset-0">
           {/* warm light behind the curtains */}
           <motion.div
             className="absolute inset-0"
