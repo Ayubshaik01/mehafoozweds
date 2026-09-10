@@ -6,43 +6,48 @@ import { wedding } from "@/data/wedding";
 /**
  * Cinematic entrance.
  *
- * Drop a generated film at /public/assets/curtain-opening.mp4 and it plays
- * automatically (poster: /public/assets/curtain-poster.jpg). If the file is
- * missing, fails to load, or autoplay is refused, an equally cinematic
- * CSS velvet-curtain sequence runs instead — the experience never breaks.
+ * Plays /assets/curtain-opening.mp4 (≈3s) as the opening film. If the file
+ * fails to load or autoplay is refused, an equally cinematic CSS velvet-curtain
+ * sequence runs instead — the experience never breaks.
  */
 
 const EASE = [0.22, 1, 0.36, 1] as const;
+const VIDEO_SRC = "/assets/curtain-opening.mp4";
+const POSTER_SRC = "/assets/curtain-poster.jpg";
 
 export function IntroCurtain({ onDone }: { onDone: () => void }) {
   const reduced = usePrefersReducedMotion();
-  const [mode, setMode] = useState<"probing" | "css">("probing");
+  const [mode, setMode] = useState<"video" | "css">("video");
   const [leaving, setLeaving] = useState(false);
   const finished = useRef(false);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
 
   const finish = useCallback(() => {
     if (finished.current) return;
     finished.current = true;
     setLeaving(true);
-    window.setTimeout(onDone, 1200);
+    window.setTimeout(onDone, 1000);
   }, [onDone]);
 
   useEffect(() => {
-    if (reduced) {
-      finish();
-      return;
-    }
-    const t = window.setTimeout(() => setMode("css"), 300);
-    return () => window.clearTimeout(t);
+    if (reduced) finish();
   }, [reduced, finish]);
 
-  // Curtain timeline: dark → curtains → open → hold → hero.
+  // Attempt autoplay; fall back to the CSS curtain if refused.
   useEffect(() => {
-    if (mode !== "css") return;
-    const t = window.setTimeout(finish, 5400);
-    return () => window.clearTimeout(t);
-  }, [mode, finish]);
+    if (reduced || mode !== "video") return;
+    const v = videoRef.current;
+    if (!v) return;
+    const p = v.play();
+    if (p && typeof p.catch === "function") p.catch(() => setMode("css"));
+  }, [reduced, mode]);
 
+  // Safety net so the intro always ends.
+  useEffect(() => {
+    if (reduced) return;
+    const t = window.setTimeout(finish, mode === "video" ? 4200 : 5400);
+    return () => window.clearTimeout(t);
+  }, [mode, reduced, finish]);
 
   return (
     <motion.div
@@ -51,9 +56,41 @@ export function IntroCurtain({ onDone }: { onDone: () => void }) {
       transition={{ duration: 1.1, ease: EASE }}
       aria-label="Opening sequence"
     >
-      {/* Velvet curtain scene */}
-      <div className="absolute inset-0">
-          {/* warm light behind the curtains */}
+      {mode === "video" ? (
+        <div className="absolute inset-0">
+          <video
+            ref={videoRef}
+            className="absolute inset-0 h-full w-full object-cover"
+            src={VIDEO_SRC}
+            poster={POSTER_SRC}
+            muted
+            playsInline
+            autoPlay
+            preload="auto"
+            onEnded={finish}
+            onError={() => setMode("css")}
+          />
+          {/* cinematic grade over the footage */}
+          <div
+            className="pointer-events-none absolute inset-0"
+            style={{
+              background:
+                "radial-gradient(circle at 50% 55%, transparent 30%, oklch(0.14 0.05 20 / .55) 100%)",
+            }}
+          />
+          <motion.div
+            className="absolute inset-0 flex items-center justify-center"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: [0, 0, 1, 1] }}
+            transition={{ duration: 3, times: [0, 0.45, 0.7, 1], ease: "easeOut" }}
+          >
+            <span className="font-display text-5xl tracking-[0.3em] text-ivory/90 drop-shadow-[0_0_40px_rgba(206,168,96,0.7)] sm:text-7xl">
+              {wedding.initials.bride}&nbsp;&amp;&nbsp;{wedding.initials.groom}
+            </span>
+          </motion.div>
+        </div>
+      ) : (
+        <div className="absolute inset-0">
           <motion.div
             className="absolute inset-0"
             style={{
@@ -61,24 +98,24 @@ export function IntroCurtain({ onDone }: { onDone: () => void }) {
                 "radial-gradient(circle at 50% 58%, oklch(0.88 0.09 82) 0%, oklch(0.6 0.1 60) 32%, oklch(0.22 0.075 20) 78%)",
             }}
             initial={{ opacity: 0, scale: 1.12 }}
-            animate={{ opacity: mode === "css" ? 1 : 0, scale: 1 }}
+            animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 5, ease: EASE, delay: 1 }}
           />
-          <CurtainPanel side="left" active={mode === "css"} />
-          <CurtainPanel side="right" active={mode === "css"} />
+          <CurtainPanel side="left" active />
+          <CurtainPanel side="right" active />
 
-          {/* monogram glinting in the opening */}
           <motion.div
             className="absolute inset-0 flex items-center justify-center"
             initial={{ opacity: 0 }}
-            animate={{ opacity: mode === "css" ? [0, 0, 1, 1] : 0 }}
+            animate={{ opacity: [0, 0, 1, 1] }}
             transition={{ duration: 6, times: [0, 0.55, 0.78, 1], ease: "easeOut" }}
           >
             <span className="font-display text-5xl tracking-[0.3em] text-ivory/90 drop-shadow-[0_0_40px_rgba(206,168,96,0.7)] sm:text-7xl">
               {wedding.initials.bride}&nbsp;&amp;&nbsp;{wedding.initials.groom}
             </span>
           </motion.div>
-      </div>
+        </div>
+      )}
 
       {/* final brighten into the hero */}
       <motion.div
@@ -122,7 +159,6 @@ function CurtainPanel({ side, active }: { side: "left" | "right"; active: boolea
       animate={active ? { x: isLeft ? "-86%" : "86%", scaleX: 0.86 } : { x: 0 }}
       transition={{ duration: 3.2, ease: [0.6, 0, 0.15, 1], delay: 0.9 }}
     >
-      {/* gold hem */}
       <span
         className="absolute bottom-0 left-0 right-0 h-6"
         style={{ background: "var(--gradient-gold)", opacity: 0.55 }}
