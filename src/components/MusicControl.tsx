@@ -4,16 +4,23 @@ import { wedding } from "@/data/wedding";
 
 export function MusicControl({ className = "" }: { className?: string }) {
   const audioRef = useRef<HTMLAudioElement | null>(null);
-  const [playing, setPlaying] = useState(false);
+  const [playing, setPlaying] = useState(true);
   const [available, setAvailable] = useState(true);
 
   useEffect(() => {
     const audio = new Audio(wedding.musicUrl);
     audio.loop = true;
     audio.volume = 0.35;
-    audio.preload = "none";
+    audio.preload = "auto";
     audio.addEventListener("error", () => setAvailable(false));
     audioRef.current = audio;
+
+    // Try to start automatically; browsers may block until first interaction.
+    audio
+      .play()
+      .then(() => setPlaying(true))
+      .catch(() => setPlaying(false));
+
     return () => {
       audio.pause();
       audio.src = "";
@@ -44,10 +51,10 @@ export function MusicControl({ className = "" }: { className?: string }) {
       type="button"
       onClick={toggle}
       aria-pressed={playing}
-      aria-label={playing ? "Turn ambient music off" : "Turn ambient music on"}
+      aria-label={playing ? "Mute music" : "Play music"}
       className={`group inline-flex h-11 w-11 items-center justify-center rounded-full border border-gold/40 bg-ivory/60 backdrop-blur-md transition-colors hover:border-gold ${className}`}
     >
-      <span className="sr-only">{playing ? "Music On" : "Music Off"}</span>
+      <span className="sr-only">{playing ? "Music On" : "Music Muted"}</span>
       <span className="flex h-4 items-end gap-[3px]" aria-hidden>
         {[0, 1, 2, 3].map((i) => (
           <motion.span
