@@ -51,27 +51,8 @@ export function IntroCurtain({ onDone }: { onDone: () => void }) {
       transition={{ duration: 1.1, ease: EASE }}
       aria-label="Opening sequence"
     >
-      {/* Video path */}
-      <video
-        ref={videoRef}
-        className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${
-          mode === "video" ? "opacity-100" : "opacity-0"
-        }`}
-        src={VIDEO_SRC}
-        poster={POSTER_SRC}
-        muted
-        playsInline
-        autoPlay
-        preload="auto"
-        controls={false}
-        disablePictureInPicture
-        onCanPlay={handleReady}
-        onError={() => setMode("css")}
-        onEnded={finish}
-      />
-
-      {/* CSS velvet curtain scene */}
-      {mode !== "video" && (
+      {/* Velvet curtain scene */}
+      {
         <div className="absolute inset-0">
           {/* warm light behind the curtains */}
           <motion.div
