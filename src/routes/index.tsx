@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 
 import { Preloader } from "@/components/Preloader";
-import { IntroCurtain } from "@/components/IntroCurtain";
+
 import { Navigation } from "@/components/Navigation";
 import { Hero } from "@/components/Hero";
 import { Events } from "@/components/Events";
@@ -54,14 +54,11 @@ export const Route = createFileRoute("/")({
   }),
 });
 
-const SKIP_KEY = "invitation-intro-seen";
-
 function Invitation() {
-  const [phase, setPhase] = useState<"loading" | "intro" | "site">("loading");
+  const [phase, setPhase] = useState<"loading" | "site">("loading");
 
   useEffect(() => {
-    const seen = sessionStorage.getItem(SKIP_KEY) === "true";
-    const t = window.setTimeout(() => setPhase(seen ? "site" : "intro"), 1000);
+    const t = window.setTimeout(() => setPhase("site"), 650);
     return () => window.clearTimeout(t);
   }, []);
 
@@ -72,20 +69,14 @@ function Invitation() {
     };
   }, [phase]);
 
-  const enter = () => {
-    sessionStorage.setItem(SKIP_KEY, "true");
-    setPhase("site");
-  };
-
   return (
     <>
       <AnimatePresence>{phase === "loading" && <Preloader key="pre" />}</AnimatePresence>
-      {phase === "intro" && <IntroCurtain onDone={enter} />}
 
       <motion.main
         initial={{ opacity: 0 }}
         animate={{ opacity: phase === "site" ? 1 : 0 }}
-        transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         aria-hidden={phase !== "site"}
       >
         <Navigation />
