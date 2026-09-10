@@ -155,7 +155,7 @@ function CurtainPanel({ side, active }: { side: "left" | "right"; active: boolea
       }}
       initial={{ x: 0, scaleX: 1 }}
       animate={active ? { x: isLeft ? "-86%" : "86%", scaleX: 0.86 } : { x: 0 }}
-      transition={{ duration: 4.2, ease: [0.65, 0, 0.2, 1], delay: 1.2 }}
+      transition={{ duration: 3.2, ease: [0.6, 0, 0.15, 1], delay: 0.9 }}
     >
       {/* gold hem */}
       <span
