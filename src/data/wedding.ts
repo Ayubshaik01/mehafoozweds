@@ -22,7 +22,29 @@ export const wedding = {
   city: "KADAPA",
 
   mapUrl:
-    "https://www.google.com/maps/search/?api=1&query=Sai+Srinivasa+Garden+Madras+Road+Chinna+Chowk+Kadapa+516002",
+    "https://www.google.com/maps/search/?api=1&query=Sai+Srinivasa+Garden+E-41-729+Madras+Road+Cuddapah+AP+516002+India",
+
+  /** Reception venues — one per celebration location. */
+  venues: [
+    {
+      id: "kadapa",
+      label: "Shukrana & Nikah",
+      name: "SAI SRINIVASA GARDEN",
+      address: "E-41-729, Madras Road, Cuddapa Central Jail, Cuddapah, AP – 516002, India",
+      detail: "Shukrana on Saturday, 26 September at 8:00 PM · Nikah on Sunday, 27 September at 11:30 AM",
+      mapUrl:
+        "https://www.google.com/maps/search/?api=1&query=Sai+Srinivasa+Garden+E-41-729+Madras+Road+Cuddapa+Central+Jail+Cuddapah+AP+516002+India",
+    },
+    {
+      id: "vempalli",
+      label: "Valima",
+      name: "MADHU REDDY CONVENTION HALL",
+      address: "Vempalli Bypass Road, Vempalli, AP – 516329, India",
+      detail: "Valima lunch on Tuesday, 29 September 2026 at 1:00 PM",
+      mapUrl:
+        "https://www.google.com/maps/search/?api=1&query=Madhu+Reddy+Convention+Hall+Vempalli+Bypass+Road+Vempalli+AP+516329+India",
+    },
+  ],
 
   /** Optional ambient track. Drop a file at /public/assets/ambient.mp3 or use a URL. */
   musicUrl: "/assets/ambient.mp3",
