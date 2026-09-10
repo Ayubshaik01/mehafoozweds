@@ -6,11 +6,9 @@ import { Preloader } from "@/components/Preloader";
 import { IntroCurtain } from "@/components/IntroCurtain";
 import { Navigation } from "@/components/Navigation";
 import { Hero } from "@/components/Hero";
-import { Story } from "@/components/Story";
 import { Events } from "@/components/Events";
 import { Countdown } from "@/components/Countdown";
 import { Venue } from "@/components/Venue";
-import { Gallery } from "@/components/Gallery";
 import { RSVP } from "@/components/RSVP";
 import { Footer } from "@/components/Footer";
 import { MobileActions } from "@/components/MobileActions";
@@ -90,10 +88,8 @@ function Invitation() {
       >
         <Navigation />
         <Hero />
-        <Story />
         <Events />
         <Countdown />
-        <Gallery />
         <Venue />
         <RSVP />
         <Footer />
