@@ -1,5 +1,6 @@
 import { motion } from "motion/react";
 import { MapPin, Mail } from "lucide-react";
+import { scrollToSection } from "@/lib/smooth-scroll";
 import { wedding } from "@/data/wedding";
 import { MusicControl } from "./MusicControl";
 
@@ -13,9 +14,7 @@ export function MobileActions() {
     >
       <button
         type="button"
-        onClick={() =>
-          document.getElementById("rsvp")?.scrollIntoView({ behavior: "smooth" })
-        }
+        onClick={() => scrollToSection("rsvp")}
         className="inline-flex min-h-[44px] flex-1 items-center justify-center gap-2 label-xs text-burgundy"
       >
         <Mail size={13} strokeWidth={1.3} aria-hidden />
