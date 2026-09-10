@@ -12,15 +12,11 @@ import { wedding } from "@/data/wedding";
  * CSS velvet-curtain sequence runs instead — the experience never breaks.
  */
 
-const VIDEO_SRC = "/assets/curtain-opening.mp4";
-const POSTER_SRC = "/assets/curtain-poster.jpg";
-
 const EASE = [0.22, 1, 0.36, 1] as const;
 
 export function IntroCurtain({ onDone }: { onDone: () => void }) {
   const reduced = usePrefersReducedMotion();
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const [mode, setMode] = useState<"probing" | "video" | "css">("probing");
+  const [mode, setMode] = useState<"probing" | "css">("probing");
   const [leaving, setLeaving] = useState(false);
   const finished = useRef(false);
 
@@ -31,32 +27,22 @@ export function IntroCurtain({ onDone }: { onDone: () => void }) {
     window.setTimeout(onDone, 1200);
   }, [onDone]);
 
-  // Give the video a short window to prove itself, otherwise run the CSS scene.
   useEffect(() => {
     if (reduced) {
       finish();
       return;
     }
-    const t = window.setTimeout(() => {
-      setMode((m) => (m === "probing" ? "css" : m));
-    }, 1400);
+    const t = window.setTimeout(() => setMode("css"), 300);
     return () => window.clearTimeout(t);
   }, [reduced, finish]);
 
-  // CSS fallback timeline: dark → curtains → open → hold → hero.
+  // Curtain timeline: dark → curtains → open → hold → hero.
   useEffect(() => {
     if (mode !== "css") return;
-    const t = window.setTimeout(finish, 6600);
+    const t = window.setTimeout(finish, 5400);
     return () => window.clearTimeout(t);
   }, [mode, finish]);
 
-  const handleReady = () => {
-    const v = videoRef.current;
-    if (!v) return;
-    v.play()
-      .then(() => setMode("video"))
-      .catch(() => setMode("css"));
-  };
 
   return (
     <motion.div
