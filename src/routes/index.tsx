@@ -13,6 +13,7 @@ import { Venue } from "@/components/Venue";
 import { RSVP } from "@/components/RSVP";
 import { Footer } from "@/components/Footer";
 import { MobileActions } from "@/components/MobileActions";
+import { BackToTop } from "@/components/BackToTop";
 import { InvitationDownload } from "@/components/InvitationDownload";
 import { HeartTrail } from "@/components/HeartTrail";
 import { SmoothScroll } from "@/components/SmoothScroll";
@@ -101,6 +102,7 @@ function Invitation() {
         </ParallaxSection>
         <Footer />
         <MobileActions />
+        <BackToTop />
       </motion.main>
       <InvitationDownload active={phase === "site"} />
       <HeartTrail />
