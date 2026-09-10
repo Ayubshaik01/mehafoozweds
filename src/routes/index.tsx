@@ -8,11 +8,13 @@ import { Navigation } from "@/components/Navigation";
 import { Hero } from "@/components/Hero";
 import { Events } from "@/components/Events";
 import { Countdown } from "@/components/Countdown";
+import { DateReveal } from "@/components/DateReveal";
 import { Venue } from "@/components/Venue";
 import { RSVP } from "@/components/RSVP";
 import { Footer } from "@/components/Footer";
 import { MobileActions } from "@/components/MobileActions";
 import { InvitationDownload } from "@/components/InvitationDownload";
+import { HeartTrail } from "@/components/HeartTrail";
 import { wedding } from "@/data/wedding";
 
 export const Route = createFileRoute("/")({
@@ -59,7 +61,7 @@ function Invitation() {
 
   useEffect(() => {
     const seen = sessionStorage.getItem(SKIP_KEY) === "true";
-    const t = window.setTimeout(() => setPhase(seen ? "site" : "intro"), 1400);
+    const t = window.setTimeout(() => setPhase(seen ? "site" : "intro"), 1000);
     return () => window.clearTimeout(t);
   }, []);
 
@@ -88,6 +90,7 @@ function Invitation() {
       >
         <Navigation />
         <Hero />
+        <DateReveal />
         <Events />
         <Countdown />
         <Venue />
@@ -96,6 +99,7 @@ function Invitation() {
         <MobileActions />
       </motion.main>
       <InvitationDownload active={phase === "site"} />
+      <HeartTrail />
     </>
   );
 }
