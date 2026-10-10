@@ -56,29 +56,40 @@ export function Hero() {
         style={{ y: contentY, opacity: fade }}
         className="relative mx-auto w-full max-w-4xl px-6 py-28 text-center"
       >
-        <motion.p {...rise(0.3)} className="label-xs text-burgundy/70">
+        <motion.p {...rise(0.3)} className="label-xs text-burgundy/80 tracking-[0.22em] uppercase">
           {wedding.eyebrow}
         </motion.p>
+        <motion.p {...rise(0.45)} className="mt-3 label-xs text-espresso/65">
+          With the Blessings of: <span className="font-semibold text-burgundy">{wedding.blessings}</span>
+        </motion.p>
+        <motion.div {...rise(0.6)} className="mt-5 space-y-1">
+          <p className="font-display text-2xl text-burgundy">{wedding.hosts.name}</p>
+          <p className="label-xs text-espresso/70 max-w-md mx-auto">
+            Solicits your gracious presence on the auspicious occasion of the
+          </p>
+          <p className="font-display text-xl sm:text-2xl italic tracking-wider text-gold pt-1">
+            Marriage Ceremony of his son
+          </p>
+        </motion.div>
 
         <motion.h1
-          className="mt-9 font-display leading-[0.92] text-burgundy"
+          className="mt-6 font-display leading-[0.95] text-burgundy"
           initial={{ opacity: 0, y: 30, letterSpacing: "0.22em" }}
           animate={{ opacity: 1, y: 0, letterSpacing: "0.06em" }}
           transition={{ duration: 2, delay: 0.6, ease: EASE }}
         >
-          <span className="block text-[clamp(2.75rem,11vw,7.5rem)]">{wedding.bride}</span>
-          <span className="my-2 block font-display text-[clamp(1.25rem,3.5vw,2.25rem)] italic text-gold">
-            &amp;
+          <span className="block text-[clamp(2.25rem,7.5vw,5rem)] tracking-wide">{wedding.groom}</span>
+          <span className="mt-1 block text-xs tracking-[0.22em] uppercase text-espresso/50 font-sans">
+            {wedding.groomDetails.qualification}
           </span>
-          <span className="block text-[clamp(2.75rem,11vw,7.5rem)]">{wedding.groom}</span>
+          <span className="my-3 block font-display text-[clamp(1.2rem,2.8vw,1.8rem)] italic text-gold">
+            with
+          </span>
+          <span className="block text-[clamp(2.25rem,7.5vw,5rem)] tracking-wide">{wedding.bride}</span>
+          <span className="mt-2 block text-xs tracking-[0.16em] text-espresso/65 font-sans">
+            {wedding.brideDetails.parentage}
+          </span>
         </motion.h1>
-
-        <motion.p
-          {...rise(1.5)}
-          className="mx-auto mt-9 max-w-md font-display text-lg italic tracking-wide text-espresso/75 sm:text-xl"
-        >
-          {wedding.invitation}
-        </motion.p>
 
         <motion.div {...rise(1.75)}>
           <Divider className="mt-9" />

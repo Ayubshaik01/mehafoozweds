@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from "motion/react";
 import invitationPdf from "@/assets/wedding-invitation.pdf.asset.json";
 
 const KEY = "invitation-card-downloaded";
-const FILENAME = "Syed-Sadiya-Ahamed-and-Shaik-Saleem-Invitation.pdf";
+const FILENAME = "Mohammed-Mehafooz-and-Noor-e-Ayen-Invitation.pdf";
 
 /**
  * Automatically offers the printed invitation card once the guest has been

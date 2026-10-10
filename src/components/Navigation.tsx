@@ -63,9 +63,9 @@ export function Navigation() {
             className="font-display text-lg tracking-[0.32em] text-burgundy"
             aria-label="Back to top"
           >
-            {wedding.initials.bride}
-            <span className="mx-1 text-gold">&amp;</span>
             {wedding.initials.groom}
+            <span className="mx-1 text-gold">&amp;</span>
+            {wedding.initials.bride}
           </button>
 
           <ul className="hidden items-center gap-9 rounded-full border border-gold/25 bg-ivory/55 px-8 py-3 backdrop-blur-xl lg:flex">

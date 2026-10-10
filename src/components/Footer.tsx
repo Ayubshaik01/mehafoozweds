@@ -30,26 +30,33 @@ export function Footer() {
         <Divider className="mt-12" />
         <p className="mt-12 label-xs text-espresso/55">{wedding.closing.line}</p>
         <h2 className="mt-6 font-display text-[clamp(2rem,7vw,4.5rem)] leading-none tracking-[0.06em] text-burgundy">
-          {wedding.bride} <span className="text-gold">&amp;</span> {wedding.groom}
+          {wedding.groom} <span className="text-gold">&amp;</span> {wedding.bride}
         </h2>
         <p className="mt-8 label-xs text-espresso/55">{wedding.dateLabel}</p>
         <p className="mt-2 label-xs text-espresso/40">{wedding.yearLabel}</p>
 
         <Divider className="mt-14" />
 
-        <div className="mt-12 space-y-2 text-sm leading-relaxed text-espresso/65">
-          <p className="label-xs text-espresso/45">{wedding.hosts.line}</p>
-          <p className="font-display text-2xl text-burgundy">{wedding.hosts.name}</p>
-          <p className="text-xs uppercase tracking-[0.2em] text-espresso/45">
-            {wedding.hosts.qualification}
-          </p>
-          <p className="mx-auto max-w-md">{wedding.hosts.role}</p>
-          <p>{wedding.hosts.address}</p>
-          <p>Ph: {wedding.hosts.phones.join(" · ")}</p>
+        <div className="mt-12 space-y-3 text-sm leading-relaxed text-espresso/65">
+          <p className="label-xs uppercase tracking-[0.2em] text-gold font-medium">With the Blessings of</p>
+          <p className="font-display text-xl text-burgundy">{wedding.blessings}</p>
+
+          <div className="pt-4">
+            <p className="label-xs text-espresso/45">{wedding.hosts.line}</p>
+            <p className="font-display text-2xl text-burgundy">{wedding.hosts.name}</p>
+            <p className="mx-auto max-w-md pt-1">{wedding.hosts.role}</p>
+            <p>{wedding.hosts.address}</p>
+          </div>
+
+          <div className="pt-5 border-t border-gold/20 max-w-md mx-auto">
+            <p className="label-xs text-espresso/45">Bride's Family</p>
+            <p className="font-display text-xl text-burgundy">{wedding.brideDetails.name}</p>
+            <p className="text-sm text-espresso/70">{wedding.brideDetails.parentage}</p>
+            <p className="text-xs text-espresso/50 italic">({wedding.brideDetails.note})</p>
+          </div>
         </div>
 
-        <p className="mt-10 label-xs text-burgundy/80">Note: {wedding.note}</p>
-        <p className="mt-4 text-sm italic text-espresso/55">{wedding.wishesFrom}</p>
+        <p className="mt-10 font-display text-lg italic text-gold">{wedding.wishesFrom}</p>
 
         <div className="mt-16 border-t border-gold/25 pt-10">
           <p className="label-xs text-espresso/40">Designed &amp; developed by</p>

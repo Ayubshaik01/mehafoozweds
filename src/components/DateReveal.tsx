@@ -10,7 +10,7 @@ export function DateReveal() {
   const ref = useRef<HTMLElement | null>(null);
   const inView = useInView(ref, { once: true, amount: 0.3 });
 
-  const digits = "27.09.2026".split("");
+  const digits = "16.10.2026".split("");
 
   return (
     <section
@@ -63,7 +63,7 @@ export function DateReveal() {
           {wedding.dateLabel.toLowerCase()} · {wedding.timeLabel.toLowerCase()}
         </motion.p>
 
-        <div className="mt-16 grid gap-px overflow-hidden rounded-sm border border-gold/20 sm:grid-cols-3">
+        <div className={`mt-16 grid gap-px overflow-hidden rounded-sm border border-gold/20 ${events.length === 2 ? "sm:grid-cols-2" : "sm:grid-cols-3"}`}>
           {events.map((e, i) => (
             <motion.div
               key={e.id}

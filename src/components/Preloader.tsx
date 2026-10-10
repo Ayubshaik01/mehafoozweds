@@ -16,11 +16,11 @@ export function Preloader() {
         transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
       >
         <span className="font-display text-5xl tracking-[0.15em] sm:text-6xl">
-          {wedding.initials.bride}
+          {wedding.initials.groom}
         </span>
         <span className="font-display text-2xl opacity-60 sm:text-3xl">&amp;</span>
         <span className="font-display text-5xl tracking-[0.15em] sm:text-6xl">
-          {wedding.initials.groom}
+          {wedding.initials.bride}
         </span>
       </motion.div>
 

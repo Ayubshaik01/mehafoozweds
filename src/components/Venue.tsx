@@ -10,11 +10,11 @@ export function Venue() {
       <div className="mx-auto max-w-7xl px-6">
         <div className="mx-auto max-w-2xl text-center">
           <Reveal>
-            <p className="label-xs text-gold">The Venues</p>
+            <p className="label-xs text-gold">The Venue</p>
           </Reveal>
           <Reveal delay={0.08}>
             <h2 className="mt-6 font-display text-[clamp(2rem,5vw,3.5rem)] leading-tight text-burgundy">
-              Two cities, one celebration
+              The Auspicious Venue
             </h2>
           </Reveal>
           <Reveal delay={0.16}>

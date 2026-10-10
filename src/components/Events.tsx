@@ -24,7 +24,7 @@ export function Events() {
         </Reveal>
         <Reveal delay={0.1}>
           <h2 className="mt-6 text-center font-display text-[clamp(2rem,5.5vw,4rem)] leading-tight text-burgundy">
-            Five evenings, one beginning
+            Two celebrations, one blessed beginning
           </h2>
         </Reveal>
         <Divider className="mt-8" />
