@@ -65,16 +65,18 @@ export function Footer() {
           </p>
           <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
             <a
-              href="mailto:ayubshaik.dev@gmail.com"
-              className="inline-flex items-center justify-center rounded-full border border-gold/45 px-7 py-3 label-xs text-burgundy transition-colors hover:bg-burgundy hover:text-ivory"
+              href="https://ayubshaik.me"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center rounded-full border border-gold/45 px-7 py-3 label-xs font-semibold text-burgundy transition-colors hover:bg-burgundy hover:text-ivory"
             >
-              Contact developer
+              Contact developer · ayubshaik.me
             </a>
             <a
-              href="https://wa.me/919703003073"
+              href="https://wa.me/917569695699"
               target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center justify-center rounded-full bg-burgundy px-7 py-3 label-xs text-ivory transition-opacity hover:opacity-90"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center rounded-full bg-burgundy px-7 py-3 label-xs font-semibold text-ivory transition-opacity hover:opacity-90"
             >
               WhatsApp
             </a>

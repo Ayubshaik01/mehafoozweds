@@ -9,8 +9,7 @@ const links = [
   { id: "hero", label: "Home" },
   { id: "dates", label: "Dates" },
   { id: "events", label: "Events" },
-  { id: "venue", label: "Venues" },
-  { id: "rsvp", label: "RSVP" },
+  { id: "venue", label: "Venue" },
 ];
 
 export function Navigation() {

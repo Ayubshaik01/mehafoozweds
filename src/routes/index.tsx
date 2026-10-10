@@ -10,7 +10,6 @@ import { Events } from "@/components/Events";
 import { Countdown } from "@/components/Countdown";
 import { DateReveal } from "@/components/DateReveal";
 import { Venue } from "@/components/Venue";
-import { RSVP } from "@/components/RSVP";
 import { Footer } from "@/components/Footer";
 import { MobileActions } from "@/components/MobileActions";
 import { BackToTop } from "@/components/BackToTop";
@@ -96,9 +95,6 @@ function Invitation() {
         </ParallaxSection>
         <ParallaxSection>
           <Venue />
-        </ParallaxSection>
-        <ParallaxSection>
-          <RSVP />
         </ParallaxSection>
         <Footer />
         <MobileActions />

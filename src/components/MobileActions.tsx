@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import { MapPin, Mail } from "lucide-react";
+import { MapPin, Calendar } from "lucide-react";
 import { scrollToSection } from "@/lib/smooth-scroll";
 import { wedding } from "@/data/wedding";
 import { MusicControl } from "./MusicControl";
@@ -14,11 +14,11 @@ export function MobileActions() {
     >
       <button
         type="button"
-        onClick={() => scrollToSection("rsvp")}
+        onClick={() => scrollToSection("events")}
         className="inline-flex min-h-[44px] flex-1 items-center justify-center gap-2 label-xs text-burgundy"
       >
-        <Mail size={13} strokeWidth={1.3} aria-hidden />
-        RSVP
+        <Calendar size={13} strokeWidth={1.3} aria-hidden />
+        Ceremonies
       </button>
       <span className="h-5 w-px bg-gold/30" aria-hidden />
       <a
